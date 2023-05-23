@@ -159,8 +159,6 @@ class demoServer(BaseHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write(b"<html><head><title>Delete Account</title></head>")
                 self.wfile.write(b"<body><h1>Delete Account</h1></body></html>")
-            else:
-                self.send_error(404, "File Not Found: %s" % self.path)
 
         except IOError:
             self.send_error(404, "File Not Found: %s" % self.path)
