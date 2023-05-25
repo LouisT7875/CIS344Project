@@ -54,7 +54,7 @@ class Database():
     def deposit(self, accountID, amount):
         if self.connection.is_connected():
             self.cursor= self.connection.cursor();
-            query = "select * FROM Transactions WHERE TransactionType = 'deposit'"
+            query = "select * FROM Transactions WHERE transactionType = 'deposit'"
             self.cursor.execute(query)
             records = self.cursor.fetchall()
             return records
@@ -64,7 +64,7 @@ class Database():
     def withdraw(self, accountID, amount):
         if self.connection.is_connected():
             self.cursor= self.connection.cursor();
-            query = "select * from Transactions WHERE TransactionType = 'withdraw'"
+            query = "select * from Transactions WHERE transactionType = 'withdraw'"
             self.cursor.execute(query)
             records = self.cursor.fetchall()
             return records
@@ -95,6 +95,7 @@ class Database():
             query = "DELETE FROM transactions WHERE accountID = %s"
             self.cursor.execute(query, (self, AccountID))
             records = self.cursor.fetchall()
+            self.connection.commit()
             return records
         pass
     
