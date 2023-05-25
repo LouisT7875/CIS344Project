@@ -30,7 +30,7 @@ class PortalRequestHandler(BaseHTTPRequestHandler):
                 '''
                     Example call: self.database.addAccount(student_name, ownerName, owner_ssn, balance, status)
                 '''
-                self.database.addAccount(owner_name,owner_ssn, balance, acct_status)
+                self.database.addAccount(owner_name,owner_ssn, balance)
                 
 
                 print("grabbed values",owner_name,owner_ssn,balance)
@@ -170,7 +170,15 @@ class PortalRequestHandler(BaseHTTPRequestHandler):
                                   <a href='/deletAccount'>Delete Account</a></div>")
                 self.wfile.write(b"<hr><h2>Deposit into an account</h2>")
 
-                self.wfile.write(b"</center></body></html>")
+                self.wfile.write(b"<form action='/withdraw' method='post'>")
+                self.wfile.write(b'<label for="oname">Owner Name:</label>\
+                      <input type="text" id="oname" name="oname"><br><br>\
+                      <label for="accountID">Account Number:</label>\
+                      <input type="number" id="amount" name="owner_ssn"><br><br>\
+                      <label for="balance">Balance:</label>\
+                      <input type="number" step="0.01" id="balance" name="balance"><br><br>\
+                      <input type="submit" value="Submit">\
+                      </form>')
                 return
             if self.path =='/searchTransactions':
                 self.send_response(200)
@@ -188,7 +196,15 @@ class PortalRequestHandler(BaseHTTPRequestHandler):
                                   <a href='/deletAccount'>Delete Account</a></div>")
                 self.wfile.write(b"<hr><h2>SearchTransactions</h2>")
 
-                self.wfile.write(b"</center></body></html>")
+                self.wfile.write(b"<form action='/withdraw' method='post'>")
+                self.wfile.write(b'<label for="oname">Owner Name:</label>\
+                      <input type="text" id="oname" name="oname"><br><br>\
+                      <label for="accountID">Account Number:</label>\
+                      <input type="number" id="amount" name="owner_ssn"><br><br>\
+                      <label for="balance">Balance:</label>\
+                      <input type="number" step="0.01" id="balance" name="balance"><br><br>\
+                      <input type="submit" value="Submit">\
+                      </form>')
 
 
                 return
@@ -207,10 +223,18 @@ class PortalRequestHandler(BaseHTTPRequestHandler):
                                   <a href='/withdraw'>Withdraw</a>|\
                                   <a href='/deposit'>Deposit </a>|\
                                   <a href='/searchTransactions'>Search Transactions</a>|\
-                                  <a href='/deletAccount'>Delete Account</a></div>")
+                                  <a href='/deleteAccount'>Delete Account</a></div>")
                 self.wfile.write(b"<hr><h2>deleteAccount</h2>")
+                self.wfile.write(b"<form action='/withdraw' method='post'>")
 
-                self.wfile.write(b"</center></body></html>")
+                self.wfile.write(b'<label for="oname">Owner Name:</label>\
+                      <input type="text" id="oname" name="oname"><br><br>\
+                      <label for="accountID">Account Number:</label>\
+                      <input type="number" id="amount" name="owner_ssn"><br><br>\
+                      <label for="balance">Balance:</label>\
+                      <input type="number" step="0.01" id="balance" name="balance"><br><br>\
+                      <input type="submit" value="Submit">\
+                      </form>')
 
                 
                 return
