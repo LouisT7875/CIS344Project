@@ -80,8 +80,8 @@ class Database():
     def accountTransactions(self, accountID):
         if self.connection.is_connected():
             self.cursor= self.connection.cursor();
-            query = ""
-            self.cursor.execute(query,(ownerName, owner_ssn, balance, status))
+            query = " SELECT * FROM Transactions WHERE accountID = %s"
+            self.cursor.execute(query,(self, accountID))
             records = self.cursor.fetchall()
             return records
         pass
@@ -90,12 +90,13 @@ class Database():
         if self.connection.is_connected():
             self.cursor= self.connection.cursor();
             query = "DELETE FROM accounts WHERE accountID = %s"
-            Values = (accounts)
-            self.cursor.execute(query, Values)
+            self.cursor.execute(query,(self, AccountID))
             
             query = "DELETE FROM transactions WHERE accountID = %s"
-            self.cursor.execute(query, Values)
+            self.cursor.execute(query, (self, AccountID))
             records = self.cursor.fetchall()
+            return records
+        pass
     
         
         
